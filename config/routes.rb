@@ -21,8 +21,8 @@ Rails.application.routes.draw do
       resources :cities, only: %i[index show], defaults: { format: :json } do
         resources :barangays, only: :index, defaults: { format: :json }
       end
-      
-      resources :barangays, only : %i[index show], defaults : { format: :json }
+
+      resources :barangays, only: %i[index show], defaults: { format: :json }
     end
   end
 end
