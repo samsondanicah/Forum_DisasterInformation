@@ -25,6 +25,8 @@ gem 'devise'
 
 gem 'rest-client'
 
+gem 'active_model_serializers'
+
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
