@@ -4,10 +4,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root 'welcome#index'
+  root 'posts#index'
 
+  resources :posts do
+    resources :comments, except: :show
+  end
   resources :categories, except: :show
-
   namespace :api do
     namespace :v1 do
       resources :regions, only: %i[index show], defaults: { format: :json } do
@@ -26,3 +28,6 @@ Rails.application.routes.draw do
     end
   end
 end
+
+
+
