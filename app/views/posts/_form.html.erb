@@ -22,32 +22,32 @@
     <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
   </div>
   <div>
-    <%= form.label :address_region_id %>
-    <%= form.collection_select :address_region_id,
+    <%= form.label :region_id %>
+    <%= form.collection_select :region_id,
                                Address::Region.all, :id, :name,
                                { prompt: 'Please select region' },
                                data: { location_target: 'selectedRegionId', action: 'change->location#fetchProvinces' } %>
   </div>
   <div>
-    <%= form.label :address_province_id %>
-    <%= form.collection_select :address_province_id,
+    <%= form.label :province_id %>
+    <%= form.collection_select :province_id,
                                [], nil, nil,
                                { prompt: 'Please select province' },
-                               data: { location_target: 'selectProvinceId' } %>
+                               data: { location_target: 'selectedProvinceId' } %>
   </div>
   <div>
-    <%= form.label :address_city_id %>
-    <%= form.collection_select :address_city_id,
+    <%= form.label :city_id %>
+    <%= form.collection_select :city_id,
                                [], nil, nil,
                                { prompt: 'Please select city' },
-                               data: { location_target: 'selectCityId' } %>
+                               data: { location_target: 'selectedCityId' } %>
   </div>
   <div>
-    <%= form.label :address_barangay_id %>
-    <%= form.collection_select :address_barangay_id,
+    <%= form.label :barangay_id %>
+    <%= form.collection_select :barangay_id,
                                [], nil, nil,
                                { prompt: 'Please select barangay' },
-                               data: { location_target: 'selectBarangayId' } %>
+                               data: { location_target: 'selectedBarangayId' } %>
   </div>
   <%= form.submit %>
 <% end %>
