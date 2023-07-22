@@ -26,6 +26,7 @@ class CategoriesController < ApplicationController
       flash[:notice] = 'Category updated successfully'
       redirect_to categories_path
     else
+      flash[:alert] = 'Categories update failed'
       render :edit
     end
   end

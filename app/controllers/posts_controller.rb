@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @posts = Post.includes(:categories, :user, :region, :province)
+    @posts = Post.includes(:categories, :user, :region, :province).page(params[:page]).per(5)
   end
 
   def new
@@ -11,6 +12,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user = current_user
     if @post.save
       flash[:notice] = 'Post created successfully'
       redirect_to posts_path
@@ -22,9 +24,12 @@ class PostsController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    authorize @post, :edit?, policy_class: PostPolicy
+  end
 
   def update
+    authorize @post, :update?, policy_class: PostPolicy
     if @post.update(post_params)
       flash[:notice] = 'Post updated successfully'
       redirect_to posts_path
@@ -35,6 +40,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    authorize @post, :destroy?, policy_class: PostPolicy
     @post.destroy
     flash[:notice] = 'Post destroyed successfully'
     redirect_to posts_path
@@ -47,6 +53,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :address, :address_region_id, :address_province_id, category_ids: [])
+    params.require(:post).permit(:title, :content, :address, :address_region_id, :address_province_id, :address_city_id, :address_barangay_id, category_ids: [])
   end
 end
