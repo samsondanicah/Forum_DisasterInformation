@@ -27,6 +27,12 @@ gem 'rest-client'
 
 gem 'active_model_serializers'
 
+gem 'kaminari'
+
+gem 'pundit'
+
+gem 'faker'
+
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
