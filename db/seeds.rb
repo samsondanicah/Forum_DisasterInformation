@@ -6,7 +6,7 @@ end
 30.times do |i|
   puts "start create #{i} post"
   region = Address::Region.all.sample
-  post = Post.create(title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph, user: User.all.sample, region: region, province: Address::Province.all.sample, city: Address::City.all.sample, barangay: Address::Barangay.all.sample)
+  post = Post.create(title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph, user: User.all.sample, region: region, province: Address::Province.all.sample)
   (1..20).to_a.sample.times do
     Comment.create(content: Faker::Lorem.sentence, user: User.all.sample, post: post)
   end
