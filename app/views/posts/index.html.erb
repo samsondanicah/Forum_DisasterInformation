@@ -1,24 +1,21 @@
 <h1>Disaster Information </h1>
 <% if user_signed_in? %>
   <h2> Hello <%= current_user.email %> </h2>
-  <%= link_to 'Sign out', destroy_user_session_path, data: { 'turbo-method': :delete } %>
+  <%= link_to 'Sign out', destroy_user_session_path, data: { 'turbo-method': :delete }, class:'btn btn-primary' %>
 <% else %>
-  <%= link_to 'Sign in', new_user_session_path %>
+  <%= link_to 'Sign in', new_user_session_path, class:'btn btn-primary' %>
 <% end %>
 
-<%= link_to 'New', new_post_path %>
-<%= link_to 'Categories', categories_path %>
-<table>
+<%= link_to 'New', new_post_path, class:'btn btn-primary'%>
+<%= link_to 'Categories', categories_path, class:'btn btn-primary'%>
+<table class="table table-dark table-striped">
   <thead>
   <td>title</td>
   <td>content</td>
   <td>address</td>
   <td>category</td>
   <td>user</td>
-  <td>region</td>
-  <td>province</td>
-  <td>city</td>
-  <td>barangay</td>
+  <td>address</td>
   <td>location</td>
   <td>action</td>
   </thead>
@@ -27,17 +24,16 @@
       <td><%= post.title %></td>
       <td><%= post.content %></td>
       <td><%= post.address %></td>
+      <td><%= post.categories.pluck(:name).join(',')%></td>
       <td><%= post.user&.email %></td>
-      <td><%= post.category %></td>
-      <td><%= "#{post.region&.name} #{post.province&.name} #{post.address} #{post.city&.name} #{post.barangay&.name}" %></td>
-      <td><%= Geocoder.search(post.ip_address).first&.country %></td>
-      <td><%= post.categories.pluck(:name).join(',') %></td>
+      <td><%= "#{post.region&.name}, #{post.province&.name}, #{post.address}, #{post.city&.name}, #{post.barangay&.name}" %></td>
+      <td><%= "#{Geocoder.search(post.ip_address).first&.city}, #{Geocoder.search(post.ip_address).first&.country}" %></td>
       <td>
         <%= link_to 'Show', post_path(post) %><br>
-        <%= link_to 'Edit', edit_post_path(post) if policy(post).edit? %>
+        <%= link_to 'Edit', edit_post_path(post) if policy(post).edit? %><br>
         <%= link_to 'Comments', post_comments_path(post) %><br>
-        <%= link_to 'New Comment', new_post_comment_path(post) %><br>
-        <%= button_to 'Delete', post_path(post), method: :delete if policy(post).destroy? %>
+        <%= link_to 'New Comment', new_post_comment_path(post), class:'btn btn-success' %><br>
+        <%= button_to 'Delete', post_path(post), method: :delete if policy(post).destroy? %><br>
       </td>
     </tr>
   <% end %>
