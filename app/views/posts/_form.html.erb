@@ -19,7 +19,7 @@
     <%= form.text_field :address %>
   </div>
   <div>
-    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
+    <%= form.collection_check_boxes :category_ids, Category.all, :id, :name, checked: @post.category_ids %>
   </div>
   <div>
     <%= form.label :region_id %>
@@ -33,14 +33,14 @@
     <%= form.collection_select :address_province_id,
                                [], nil, nil,
                                { prompt: 'Please select province' },
-                               data: { location_target: 'selectedProvinceId' } %>
+                               data: { location_target: 'selectedProvinceId', action: 'change->location#fetchCities' } %>
   </div>
   <div>
     <%= form.label :city_id %>
     <%= form.collection_select :address_city_id,
                                [], nil, nil,
                                { prompt: 'Please select city' },
-                               data: { location_target: 'selectedCityId' } %>
+                               data: { location_target: 'selectedCityId', action: 'change->location#fetchBarangays' } %>
   </div>
   <div>
     <%= form.label :barangay_id %>
