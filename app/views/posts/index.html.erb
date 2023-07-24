@@ -17,6 +17,9 @@
   <td>user</td>
   <td>region</td>
   <td>province</td>
+  <td>city</td>
+  <td>barangay</td>
+  <td>location</td>
   <td>action</td>
   </thead>
   <% @posts.each do |post| %>
@@ -26,7 +29,8 @@
       <td><%= post.address %></td>
       <td><%= post.user&.email %></td>
       <td><%= post.category %></td>
-      <td><%= "#{post.region&.name} #{post.province&.name} #{post.address}" %></td>
+      <td><%= "#{post.region&.name} #{post.province&.name} #{post.address} #{post.city&.name} #{post.barangay&.name}" %></td>
+      <td><%= Geocoder.search(post.ip_address).first&.country %></td>
       <td><%= post.categories.pluck(:name).join(',') %></td>
       <td>
         <%= link_to 'Show', post_path(post) %><br>
