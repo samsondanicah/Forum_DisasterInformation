@@ -33,6 +33,9 @@ gem 'pundit'
 
 gem 'faker'
 
+gem 'geocoder'
+
+
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
