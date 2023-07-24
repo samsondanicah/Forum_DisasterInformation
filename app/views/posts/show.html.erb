@@ -4,10 +4,11 @@
   <li><%= @post.content %></li>
   <li><%= @post.address %></li>
   <li><%= @post.user&.email %></li>
-  <li><%= @post.categroy %></li>
+  <li><%= @post.categories %></li>
   <li><%= @post.region %></li>
   <li><%= @post.province %></li>
   <li><%= @post.city %></li>
   <li><%= @post.barangay %></li>
 </ul>
 
+<%= link_to 'Index', posts_path %>
