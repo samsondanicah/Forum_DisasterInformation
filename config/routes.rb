@@ -4,8 +4,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  get 'posts' => 'posts#index'
   root 'posts#index'
+  get 'posts' => 'posts#index'
+  get '/export', to: 'export#export_to_csv'
+
+  resources :csv_imports, only: [:new, :create]
 
   resources :posts do
     resources :comments, except: :show

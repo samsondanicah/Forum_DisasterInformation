@@ -8,7 +8,13 @@
 
 <%= link_to 'New', new_post_path, class:'btn btn-primary'%>
 <%= link_to 'Categories', categories_path, class:'btn btn-primary'%>
-<table class="table table-dark table-striped">
+<%= link_to 'Export Data to CSV', export_path, class: 'btn btn-success' %>
+<h1>CSV Import</h1>
+<%= form_with(url: csv_imports_path, method: :post, local: true, multipart: true) do |form| %>
+  <%= form.file_field :file %>
+  <%= form.submit 'Import CSV', class: 'btn btn-primary' %>
+<% end %>
+<table class="table table-dark table-success table-striped">
   <thead>
   <td>title</td>
   <td>content</td>
@@ -32,12 +38,14 @@
         <%= link_to 'Show', post_path(post) %><br>
         <%= link_to 'Edit', edit_post_path(post) if policy(post).edit? %><br>
         <%= link_to 'Comments', post_comments_path(post) %><br>
-        <%= link_to 'New Comment', new_post_comment_path(post), class:'btn btn-success' %><br>
+        <%= link_to 'New Comment', new_post_comment_path(post) %><br>
         <%= button_to 'Delete', post_path(post), method: :delete if policy(post).destroy? %><br>
       </td>
     </tr>
   <% end %>
 </table>
+
+
 
 <%= paginate @posts %>
 

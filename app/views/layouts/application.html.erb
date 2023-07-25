@@ -16,9 +16,6 @@
 <% if flash[:alert] %>
   <p class="alert"><%= alert %></p>
 <% end %>
-<%= link_to 'EN', params.permit!.merge(locale: 'en') %>
-<%= link_to 'zh-CN', params.permit!.merge(locale: 'zh-CN') %>
-<%= link_to 'Filipino', params.permit!.merge(locale: 'Filipino') %>
 <%= yield %>
 </body>
 </html>

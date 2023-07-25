@@ -4,11 +4,9 @@
   <li><%= @post.content %></li>
   <li><%= @post.address %></li>
   <li><%= @post.user&.email %></li>
-  <li><%= @post.categories %></li>
-  <li><%= @post.region %></li>
-  <li><%= @post.province %></li>
-  <li><%= @post.city %></li>
-  <li><%= @post.barangay %></li>
+  <li><%= @post.categories.pluck(:name).join(',') %></li>
+  <li><%= "#{@post.region&.name}, #{@post.province&.name}, #{@post.address}, #{@post.city&.name}, #{@post.barangay&.name}" %></li>
+  <li><%= "#{Geocoder.search(@post.ip_address).first&.city}, #{Geocoder.search(@post.ip_address).first&.country}" %></li>
 </ul>
 
 <%= link_to 'Index', posts_path %>
